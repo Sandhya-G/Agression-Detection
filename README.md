@@ -21,7 +21,7 @@ source <environment_name>/bin/activate
  
 On Windows
 ```
-py -m venv env
+py -m venv <environment_name>
 ```
 activate the environment
 ```
