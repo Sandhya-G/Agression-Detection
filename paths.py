@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 from pathlib import Path
+import os
 class CONST(object):
 	__slots__ = ()
 	#FOO = 1234
-	TWITTER_DATA = Path("../dataset/twitter.csv")
-	TWITTER_DATA_2 = Path("../dataset/twitter2.csv")
-	RAW_DATA = Path("../dataset/raw_data.csv")
-	TRAIN_DATA = Path("../dataset/train_data.csv")
-	TEST_DATA = Path("../dataset/test_data.csv")
+	PROJECT_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+	TWITTER_DATA = Path(PROJECT_ROOT_DIR,"dataset/twitter.csv")
+	TWITTER_DATA_2 = Path(PROJECT_ROOT_DIR,"dataset/twitter2.csv")
+	RAW_DATA = Path(PROJECT_ROOT_DIR,"dataset/raw_data.csv")
+	TRAIN_DATA = Path(PROJECT_ROOT_DIR,"dataset/train_data.csv")
+	TEST_DATA = Path(PROJECT_ROOT_DIR,"dataset/test_data.csv")
 
 	#def __setattr__(self, *_):
 		#raise TypeError
