@@ -1,4 +1,4 @@
-# Agression-Detection
+# Aggression-Detection
 
 Refer [this](https://towardsdatascience.com/manage-your-data-science-project-structure-in-early-stage-95f91d4d0600) to understand the project folder structure.
 
@@ -6,7 +6,7 @@ Refer [this](https://towardsdatascience.com/manage-your-data-science-project-str
 
 #### 1. Clone the repository
 ```
-git clone https://www.github.com/Sandhya-G/Agression-Detection.git
+git clone https://www.github.com/Sandhya-G/Aggression-Detection.git
 ```
 
 #### 2. Create virtual environment
