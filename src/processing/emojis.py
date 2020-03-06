@@ -34,4 +34,34 @@ def remove_emoji(text, remove_components=False):
         cleaned = emoji_components.sub(u'', cleaned)
     return cleaned
 
+def is_emoji(char):
+    assert isinstance(char,str) and len(char)==1,"This function  only accepts single characters"
+    return char in emoji.UNICODE_EMOJI
+def get_emoji_name(char):
+    if(is_emoji(char)):
+        return emoji.UNICODE_EMOJI[char]
+def extract_emoji(char):
+  return ''.join(c for c in char if c in emoji.UNICODE_EMOJI)
+
+#also removes emoji if it repeats itself for example "AABBACCDB" --> "ABACDB"
+def replace_emojis_with_text(text):
+    assert isinstance(text,str) and len(text)>0,"size must be greater than 0" 
+    replaced_text = get_emoji_name(text[0])[1:-1]+" " if(is_emoji(text[0])) else text[0]
+
+    for i in range(1,len(text)) :
+        char = text[i]
+        previous_char = text[i-1]
+        if(get_emoji_name(char) is None):
+            replaced_text = replaced_text + char
+        elif(get_emoji_name(char) is not get_emoji_name(previous_char)):
+            replaced_text = replaced_text + " " +get_emoji_name(char)[1:-1]+" "
+        else:
+            #pass
+            continue
+        
+    return replaced_text
+        
+        
+        
+#print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
 #print(remove_emoji("HMDA plot sales Agents🤝🏼🏼😜 ;)"))
