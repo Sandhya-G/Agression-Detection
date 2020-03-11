@@ -4,3 +4,4 @@ final
 notebook/explore.ipynb
 *.pyo
 *.pyc
+glove/

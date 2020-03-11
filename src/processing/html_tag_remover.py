@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-
 from html.parser import HTMLParser
-#!/usr/bin/env python
 
 class MLStripper(HTMLParser):
     def __init__(self):

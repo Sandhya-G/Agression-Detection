@@ -1,3 +1,6 @@
+import os
+from abc import ABCMeta, abstractmethod
+
 class DataProcessor(metaclass=ABCMeta):
     """Base processor to be used for all preparation."""
     def __init__(self, input_directory, output_directory):

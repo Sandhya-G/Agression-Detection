@@ -11,6 +11,13 @@ class CONST(object):
 	TRAIN_DATA = Path(PROJECT_ROOT_DIR,"dataset/train_data.csv")
 	TEST_DATA = Path(PROJECT_ROOT_DIR,"dataset/test_data.csv")
 
+	#GLOVE PATH
+	GLOVE_200d = Path(PROJECT_ROOT_DIR,"glove/glove.twitter.27B.200d.txt")
+	GLOVE_100d = Path(PROJECT_ROOT_DIR,"glove/glove.twitter.27B.100d.txt")
+	GLOVE_50d = Path(PROJECT_ROOT_DIR,"glove/glove.twitter.27B.50d.txt")
+	GLOVE_25d = Path(PROJECT_ROOT_DIR,"glove/glove.twitter.27B.25d.txt")
+
+
 	#def __setattr__(self, *_):
 		#raise TypeError
 

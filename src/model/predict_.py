@@ -1,3 +1,6 @@
+import os
+from abc import ABCMeta, abstractmethod
+
 class Predict(metaclass=ABCMeta):
     """Base predictor to be used for all models."""
 
