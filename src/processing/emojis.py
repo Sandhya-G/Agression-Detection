@@ -43,6 +43,14 @@ def get_emoji_name(char):
 def extract_emoji(char):
   return ''.join(c for c in char if c in emoji.UNICODE_EMOJI)
 
+#def replace_emoji_for_glove(tweet,embedding):
+    #emoji_only = extract_emoji(tweet)
+    #for e in emoji_only:
+        #if e not in embedding:
+            #tweet = tweet.replace(e,get_emoji_name(e)[1:-1])
+    #return tweet
+
+
 #also removes emoji if it repeats itself for example "AABBACCDB" --> "ABACDB"
 def replace_emojis_with_text(text):
     assert isinstance(text,str) and len(text)>0,"size must be greater than 0" 
@@ -63,5 +71,5 @@ def replace_emojis_with_text(text):
         
         
         
-#print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
+#print(extract_emoji("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
 #print(remove_emoji("HMDA plot sales Agents🤝🏼🏼😜 ;)"))

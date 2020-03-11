@@ -34,7 +34,13 @@ activate the environment
 pip install -r requirements.txt
 ```
 
-#### 4. Run the app
+#### 4. Create a `glove` folder in your project directory.
+
+#### 5. Download the Pretained Glove Embeddings from [here](https://www.kaggle.com/jdpaletto/glove-global-vectors-for-word-representation). 
+
+#### 6.  Unzip the files and add them to the `glove` folder.
+
+#### 7. Run the app
 ```
 Flask run
 ```

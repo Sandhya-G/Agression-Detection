@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import re
-from spellchecker import SpellChecker
+#from spellchecker import SpellChecker
 
 #assumes each character doesn't occur more than 2 times at once (really simple logic)
 import itertools
@@ -16,7 +16,7 @@ def words(text):
 def spell_checker(text):
     spell = SpellChecker()
     only_text = " ".join(words(text))
-    print(only_text)
+    #print(only_text)
     # find those words that may be misspelled
     list_of_words = only_text.strip().split()
     misspelled = spell.unknown(list_of_words)

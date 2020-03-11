@@ -17,7 +17,11 @@ def hashtag(text):
 
 def allcaps(text):
     text = text.group()
-    return text.lower() + " <allcaps>"
+    return text.lower() + " <allcaps> "
+
+def apostrophe(text):
+	text = text.group()
+	return text.replace("'","")
 
 def tweet_preprocessing(text):
 # eyes and nose sets for smiley faces
@@ -29,17 +33,17 @@ def tweet_preprocessing(text):
     # function so code less repetitive
     def re_sub(pattern, repl):
         return re.sub(pattern, repl, text, flags=FLAGS)
-
-    text = re_sub(phone_number,"<phone_number>")
+    text = re_sub(r"\w+'s", apostrophe)
+    text = re_sub(phone_number," <phone_number> ")
     text = re_sub(r"https?:\/\/\S+\b|www\.(\w+\.)+\S*", "<url>") 
-    text = re_sub(r"@\w+", "<user>")
-    text = re_sub(r"{}{}[)dD]+|[(]+{}{}".format(eyes, nose, nose, eyes), "<smile>") 
-    text = re_sub(r"{}{}p+".format(eyes, nose), "<lolface>")
-    text = re_sub(r"{}{}\(+|[)Dd]+{}{}".format(eyes, nose, nose, eyes), "<sadface>")
-    text = re_sub(r"{}{}[\/|l*]".format(eyes, nose), "<neutralface>")
-    text = re_sub(r"/-_"," ")
-    text = re_sub(r"<3","<heart>")
-    text = re_sub(r"[-+]?[.\d]*[\d]+[:,.\d]*", "<number>")
+    text = re_sub(r"@\w+", " <user> ")
+    text = re_sub(r"{}{}[)dD]+|[(]+{}{}".format(eyes, nose, nose, eyes), " <smile> ") 
+    text = re_sub(r"{}{}p+".format(eyes, nose), " <lolface> ")
+    text = re_sub(r"{}{}\(+|[)Dd]+{}{}".format(eyes, nose, nose, eyes), " <sadface> ")
+    text = re_sub(r"{}{}[\/|l*]".format(eyes, nose), " <neutralface> ")
+    text = re_sub(r"/"," ")
+    text = re_sub(r"<3"," <heart> ")
+    text = re_sub(r"[-+]?[.\d]*[\d]+[:,.\d]*", " <number> ")
     text = re_sub(r"#\S+", hashtag)
     #text = re_sub(r"[-_]"," ")
     text = re_sub(r"\s+"," ")
@@ -56,7 +60,7 @@ def tweet_preprocessing(text):
 #+91 (800) 123-4567, and              #+642 745 741 7457  123-4567     123-456            """
 #matches \n too
 #text = "\nJoke: what do you call a pig with three eyes? piiig!![Google \n \n documentation][dbr5324195678!@#$%^&()_+';']"
-text = "I TEST alllll kinds of #hashtags and #HASHTAGS and ( : )':  ))):  ;) XD xD Dx DX ) haaaaappppyyy (: :( and  +40 4:45 #HashTags,words/random/random/ USA @mentions and 3000:1 (http://t.co/dkfjkdf). w/ <3 :) haha!!!!! so on...."
-tokens = tweet_preprocessing(text)
-print(tokens)
+#text = "I TEST alllll kinds of #hashtags and #HASHTAGS and ( : )':  ))):  ;) XD xD Dx DX ) haaaaappppyyy (: :( and  +40 4:45 #HashTags,words/random/random/ USA @mentions and 3000:1 (http://t.co/dkfjkdf). w/ <3 :) haha!!!!! so on...."
+#tokens = tweet_preprocessing(text)
+#print(tokens)
 
