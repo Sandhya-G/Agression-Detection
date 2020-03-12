@@ -49,27 +49,34 @@ def extract_emoji(char):
         #if e not in embedding:
             #tweet = tweet.replace(e,get_emoji_name(e)[1:-1])
     #return tweet
-
-
-#also removes emoji if it repeats itself for example "AABBACCDB" --> "ABACDB"
-def replace_emojis_with_text(text):
+def remove_duplicates(text):
     assert isinstance(text,str) and len(text)>0,"size must be greater than 0" 
-    replaced_text = get_emoji_name(text[0])[1:-1]+" " if(is_emoji(text[0])) else text[0]
+    new_text = ''
+    text = text.strip()
+    for word in text.split():
+        
+        new_text = new_text+" " +word[0]
+        #print("new_text",new_text,"\n")
+        for i in range(1,len(word)):
+            if is_emoji(word[i]) and is_emoji(word[i-1]) and (get_emoji_name(word[i]) == get_emoji_name(word[i-1])):
+                continue
+            else:
+                new_text = new_text + word[i]
+    return new_text.strip()
 
-    for i in range(1,len(text)) :
-        char = text[i]
-        previous_char = text[i-1]
-        if(get_emoji_name(char) is None):
-            replaced_text = replaced_text + char
-        elif(get_emoji_name(char) is not get_emoji_name(previous_char)):
-            replaced_text = replaced_text + " " +get_emoji_name(char)[1:-1]+" "
-        else:
-            #pass
-            continue
-        
-    return replaced_text
-        
+
+
+def replace_emojis_with_text(text):
+    text = remove_duplicates(text)
+    for word in text.split():
+        for i in range(0,len(word)):
+            if is_emoji(word[i]):
+                text = text.replace(word[i]," " +get_emoji_name(word[i])[1:-1]+" ")
+    return text.strip()
+
+    
         
         
-#print(extract_emoji("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
+        
+print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
 #print(remove_emoji("HMDA plot sales Agents🤝🏼🏼😜 ;)"))

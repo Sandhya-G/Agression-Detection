@@ -35,22 +35,23 @@ def tweet_preprocessing(text):
         return re.sub(pattern, repl, text, flags=FLAGS)
     text = re_sub(r"\w+'s", apostrophe)
     text = re_sub(phone_number," <phone_number> ")
-    text = re_sub(r"https?:\/\/\S+\b|www\.(\w+\.)+\S*", "<url>") 
+    text = re_sub(r"https?:\/\/\S+\b|www\.(\w+\.)+\S*", " <url> ") 
     text = re_sub(r"@\w+", " <user> ")
-    text = re_sub(r"{}{}[)dD]+|[(]+{}{}".format(eyes, nose, nose, eyes), " <smile> ") 
+    text = re_sub(r"{}{}[)dD3]+|[(]+{}{}".format(eyes, nose, nose, eyes), " <smile> ") 
     text = re_sub(r"{}{}p+".format(eyes, nose), " <lolface> ")
     text = re_sub(r"{}{}\(+|[)Dd]+{}{}".format(eyes, nose, nose, eyes), " <sadface> ")
     text = re_sub(r"{}{}[\/|l*]".format(eyes, nose), " <neutralface> ")
-    text = re_sub(r"/"," ")
+    text = re_sub(r"/"," / ")
     text = re_sub(r"<3"," <heart> ")
     text = re_sub(r"[-+]?[.\d]*[\d]+[:,.\d]*", " <number> ")
     text = re_sub(r"#\S+", hashtag)
     #text = re_sub(r"[-_]"," ")
     text = re_sub(r"\s+"," ")
-    #text = re_sub(r"([!?.]){2,}", r"\1 <repeat>")
+    text = re_sub(r"([!?.]){2,}", r"\1 <repeat> ")
     #text = re_sub(r"\b(\S*?)(.)\2{2,}\b", r"\1\2 <elong>")
     text = re_sub(r"\[.+\]","")
     text = re_sub(r"([A-Z]){2,}", allcaps)
+    text = re_sub(r"[\.]+",".")
 
     return text.lower()
 #text =  "RT @ #happyfuncoding: this is a typical Twitter tweet :-)"
@@ -59,8 +60,8 @@ def tweet_preprocessing(text):
 #+1 (800) 123-4567, 
 #+91 (800) 123-4567, and              #+642 745 741 7457  123-4567     123-456            """
 #matches \n too
-#text = "\nJoke: what do you call a pig with three eyes? piiig!![Google \n \n documentation][dbr5324195678!@#$%^&()_+';']"
+text = "\nJoke: what do you call a pig with three eyes???piiig!!!ALLCAPS ....[Google \n \n documentation][dbr5324195678!@#$%^&()_+';'] 3 2"
 #text = "I TEST alllll kinds of #hashtags and #HASHTAGS and ( : )':  ))):  ;) XD xD Dx DX ) haaaaappppyyy (: :( and  +40 4:45 #HashTags,words/random/random/ USA @mentions and 3000:1 (http://t.co/dkfjkdf). w/ <3 :) haha!!!!! so on...."
-#tokens = tweet_preprocessing(text)
-#print(tokens)
+tokens = tweet_preprocessing(text)
+print(tokens)
 
