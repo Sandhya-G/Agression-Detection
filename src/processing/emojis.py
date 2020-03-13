@@ -37,9 +37,11 @@ def remove_emoji(text, remove_components=False):
 def is_emoji(char):
     assert isinstance(char,str) and len(char)==1,"This function  only accepts single characters"
     return char in emoji.UNICODE_EMOJI
+
 def get_emoji_name(char):
     if(is_emoji(char)):
         return emoji.UNICODE_EMOJI[char]
+
 def extract_emoji(char):
   return ''.join(c for c in char if c in emoji.UNICODE_EMOJI)
 
@@ -65,7 +67,6 @@ def remove_duplicates(text):
     return new_text.strip()
 
 
-
 def replace_emojis_with_text(text):
     text = remove_duplicates(text)
     for word in text.split():
@@ -78,5 +79,5 @@ def replace_emojis_with_text(text):
         
         
         
-print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
+#print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
 #print(remove_emoji("HMDA plot sales Agents🤝🏼🏼😜 ;)"))

@@ -22,11 +22,11 @@ class CONST(object):
 	#def __setattr__(self, *_):
 		#raise TypeError
 
-CONST = CONST()
+#CONST = CONST()
 #CONST.FOO = 4321
 #CONST.__dict__['FOO'] = 4321 
 #CONST.BAR = 5678
 
 #print(CONST.FOO)       
-print(CONST.PROJECT_ROOT_DIR)
+#print(CONST.PROJECT_ROOT_DIR)
 #print(CONST.FOO)

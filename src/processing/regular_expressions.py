@@ -5,15 +5,15 @@ Translation of Ruby script with little variations to create features for text cl
 import re
 
 FLAGS = re.MULTILINE | re.DOTALL
-
+#ADD TWEETS AS OTHER FEATURES
 def hashtag(text):
     text = text.group()
     hashtag_body = text[1:]
     if hashtag_body.isupper():
         result = " {} ".format(hashtag_body.lower())
     else:
-        result = " ".join([""] + [re.sub(r"([A-Z])",r" \1", hashtag_body, flags=FLAGS)])
-    return result
+        result = " ".join([" "] + [re.sub(r"([A-Z])",r" \1 ", hashtag_body, flags=FLAGS)])
+    return " "+result+" "
 
 def allcaps(text):
     text = text.group()
@@ -34,7 +34,7 @@ def tweet_preprocessing(text):
     def re_sub(pattern, repl):
         return re.sub(pattern, repl, text, flags=FLAGS)
     text = re_sub(r"\w+'s", apostrophe)
-    text = re_sub(phone_number," <phone_number> ")
+    text = re_sub(phone_number," <number> ")
     text = re_sub(r"https?:\/\/\S+\b|www\.(\w+\.)+\S*", " <url> ") 
     text = re_sub(r"@\w+", " <user> ")
     text = re_sub(r"{}{}[)dD3]+|[(]+{}{}".format(eyes, nose, nose, eyes), " <smile> ") 
@@ -44,14 +44,15 @@ def tweet_preprocessing(text):
     text = re_sub(r"/"," / ")
     text = re_sub(r"<3"," <heart> ")
     text = re_sub(r"[-+]?[.\d]*[\d]+[:,.\d]*", " <number> ")
-    text = re_sub(r"#\S+", hashtag)
+    text = re_sub(r"#\S+", " ")
     #text = re_sub(r"[-_]"," ")
-    text = re_sub(r"\s+"," ")
     text = re_sub(r"([!?.]){2,}", r"\1 <repeat> ")
     #text = re_sub(r"\b(\S*?)(.)\2{2,}\b", r"\1\2 <elong>")
     text = re_sub(r"\[.+\]","")
+    text = re_sub(r"(\w*)…",r"\1 ")
+    text = re_sub(r"\s+"," ")
     text = re_sub(r"([A-Z]){2,}", allcaps)
-    text = re_sub(r"[\.]+",".")
+   
 
     return text.lower()
 #text =  "RT @ #happyfuncoding: this is a typical Twitter tweet :-)"
@@ -60,7 +61,7 @@ def tweet_preprocessing(text):
 #+1 (800) 123-4567, 
 #+91 (800) 123-4567, and              #+642 745 741 7457  123-4567     123-456            """
 #matches \n too
-text = "\nJoke: what do you call a pig with three eyes???piiig!!!ALLCAPS ....[Google \n \n documentation][dbr5324195678!@#$%^&()_+';'] 3 2"
+text = "\n#Joke: what do you… … call a pig with three eyes???piiig!!!ALLCAPS ....[Google \n \n documentation][dbr5324195678!@#$%^&()_+';'] 3 2"
 #text = "I TEST alllll kinds of #hashtags and #HASHTAGS and ( : )':  ))):  ;) XD xD Dx DX ) haaaaappppyyy (: :( and  +40 4:45 #HashTags,words/random/random/ USA @mentions and 3000:1 (http://t.co/dkfjkdf). w/ <3 :) haha!!!!! so on...."
 tokens = tweet_preprocessing(text)
 print(tokens)
