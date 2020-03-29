@@ -7,7 +7,7 @@ import wordsegment
 
 FLAGS = re.MULTILINE | re.DOTALL
 
-def hashtag(text,segment=True):
+def hashtag(text,segment=False):
     text = text.group()
     hashtag_body = text[1:]
     if segment:

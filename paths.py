@@ -11,6 +11,8 @@ class CONST(object):
 	RAW_DATA = Path(PROJECT_ROOT_DIR,"dataset/raw_data.csv")
 	TRAIN_DATA = Path(PROJECT_ROOT_DIR,"dataset/train_data.csv")
 	TEST_DATA = Path(PROJECT_ROOT_DIR,"dataset/test_data.csv")
+	CLEANED_TRAIN =	Path(PROJECT_ROOT_DIR,"dataset/ML_CLEANED_train_data")
+	CLEANED_TEST = Path(PROJECT_ROOT_DIR,"dataset/ML_CLEANED_test_data")
 
 	#GLOVE PATH
 	GLOVE_200d = Path(PROJECT_ROOT_DIR,"glove/glove.twitter.27B.200d.txt")
