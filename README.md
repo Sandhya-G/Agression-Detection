@@ -1,6 +1,6 @@
 # Aggression-Detection
 
-Refer [this](https://towardsdatascience.com/manage-your-data-science-project-structure-in-early-stage-95f91d4d0600) to understand the project folder structure.
+***WARNING: The data, lexicons, and notebooks all contain content that is racist, sexist, homophobic, and offensive in many other ways.***
 
 ### Steps to run 
 

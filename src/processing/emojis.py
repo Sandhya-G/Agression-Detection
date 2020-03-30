@@ -72,12 +72,12 @@ def replace_emojis_with_text(text):
     for word in text.split():
         for i in range(0,len(word)):
             if is_emoji(word[i]):
-                text = text.replace(word[i]," " +get_emoji_name(word[i])[1:-1]+" ")
+                text = text.replace(word[i]," " +get_emoji_name(word[i])[1:-1]+" ").replace("_"," ")
     return text.strip()
 
     
         
         
         
-#print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
+print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
 #print(remove_emoji("HMDA plot sales Agents🤝🏼🏼😜 ;)"))

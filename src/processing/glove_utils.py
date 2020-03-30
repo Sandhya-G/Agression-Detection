@@ -3,6 +3,7 @@ import operator
 import numpy as np
 from tqdm.auto import tqdm
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 def load_embed(file):
     def get_coefs(word,*arr): 
