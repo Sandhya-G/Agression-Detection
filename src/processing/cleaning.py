@@ -1,6 +1,5 @@
 import pandas as pd
 from tqdm.auto import tqdm
-
 tqdm.pandas()
 
 from special_char import clean_special_chars
@@ -14,24 +13,22 @@ def remove_empty(dataframe):
     drop_rows = dataframe[dataframe['tweet']==""]
     dataframe.drop(drop_rows.index, axis=0,inplace=True)
     return dataframe
-def clean_data(dataframe,embeddings=True):
+
+def clean_data(path,embeddings=False):
     #add_lower()
-    dataframe["tweet"] = dataframe['tweet'].progress_apply(lambda x: replace_slang(x))
-    dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x : strip_tags(x))
-    dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: tweet_preprocessing(x))
-    dataframe["tweet"] = dataframe["tweet"].progress_apply(lambda x : x.lower())
-    dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: clean_contractions(x))
-    dataframe = remove_empty(dataframe)
-    dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: replace_elongated_text(x))
-    #dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: remove_duplicates(x))
-    dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: clean_special_chars(x))
+    dataframe = pd.read_csv(path)
     if not embeddings:
-        "Stemming, delete emoji/replace with text , remove few stop words, remove special_characters"
-        pass
-   
-    
- 
-   
+        return dataframe
+    else:
+        dataframe["tweet"] = dataframe['tweet'].progress_apply(lambda x: replace_slang(x))
+        dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x : strip_tags(x))
+        dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: tweet_preprocessing(x))
+        dataframe["tweet"] = dataframe["tweet"].progress_apply(lambda x : x.lower())
+        dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: clean_contractions(x))
+        dataframe = remove_empty(dataframe)
+        dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: replace_elongated_text(x))
+        #dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: remove_duplicates(x))
+        dataframe['tweet'] = dataframe['tweet'].progress_apply(lambda x: clean_special_chars(x))       
     return dataframe
     
     
