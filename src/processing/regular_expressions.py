@@ -15,7 +15,7 @@ def hashtag(text,segment=False):
         load()
         return " ".join(segment(hashtag_body))
     else :
-        return "<hashtags>"
+        return " <hashtag> "
 SMILE = ""
 LOL = ""
 SAD  = ""
@@ -92,8 +92,8 @@ def tweet_preprocessing(text,embedding=False):
 #+1 (800) 123-4567, 
 #+91 (800) 123-4567, and              #+642 745 741 7457  123-4567     123-456            """
 #matches \n too
-text = "\n#Joke: what do you… … call a pig with three eyes???piiig!!!ALLCAPS .... [Google Documentation][dbr@#$sdfd84512%^&()_+';'] 3 2 full-time-time"
+#text = "\n#Joke: what do you… … call a pig with three eyes???piiig!!!ALLCAPS .... [Google Documentation][dbr@#$sdfd84512%^&()_+';'] 3 2 full-time-time"
 #text = "I TEST alllll kinds of #hashtags and #HASHTAGS and ( : )':  ))):  ;) XD xD Dx DX ) haaaaappppyyy (: :( and  +40 4:45 #HashTags,words/random/random/ USA @mentions and 3000:1 (http://t.co/dkfjkdf). w/ <3 :) haha!!!!! so on...."
-tokens = tweet_preprocessing(text)
+#tokens = tweet_preprocessing(text)
 #print(SMILE,LOL,SAD,NEUTRAL,NUMBER,HEART,REPEAT)
-print(tokens)
+#print(tokens)

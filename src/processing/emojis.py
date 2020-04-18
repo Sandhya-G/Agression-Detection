@@ -79,5 +79,5 @@ def replace_emojis_with_text(text):
         
         
         
-print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
+#print(replace_emojis_with_text("☺fmgvmn🍜😴😴😴🤯🤯🥴fgfb🤔"))
 #print(remove_emoji("HMDA plot sales Agents🤝🏼🏼😜 ;)"))

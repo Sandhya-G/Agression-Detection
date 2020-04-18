@@ -40,13 +40,13 @@ isolate_dict_ML = {ord(c):f' ' for c in symbols_to_isolate + "<>"}
 
 #currencies are replaced with `e`
 #2 and 3 for the squares and cubes might a well you regex
-punct_mapping = {"‘": "'","₹": "e", "´": "'", "°": "", "€": "e", "™": "tm", "√": " sqrt ", "×": "x", "²": "2", "—": "-", "–": "-", "’": "'", "_": "-", "`": "'", '“': '"', '”': '"', '“': '"', "£": "e", '∞': 'infinity', 'θ': 'theta', '÷': '/', 'α': 'alpha', '•': '.', 'à': 'a', '−': '-', 'β': 'beta', '∅': '', '³': '3', 'π': 'pi', }
+punct_mapping = {"‘": "'","₹": "e", "´": "'", "°": "", "€": "e", "™": "tm", "√": " sqrt ", "×": "x", "²": "2", "—": "-", "–": "-", "’": "'", "_": "-", "`": "'", '“': '"', '”': '"', '“': '"', "£": "e", '∞': 'infinity', 'θ': 'theta', '÷': '/', 'α': 'alpha', '•': '.', 'à': 'a', '−': '-', 'β': 'beta', '∅': '', '³': '3', 'π': 'pi'}
 
 def clean_special_chars(text, punct=punct, mapping=punct_mapping,delete_symbols=symbols_to_delete,embedding=False):
     for p in mapping:
     	text = text.replace(p, mapping[p])
     
-    specials = {'\u200b': ' ', '…': ' ... '}  # Other special characters that I have to deal with in last
+    specials = {'\u200b': ' ', '…': ' ... ',"'":" "}  # Other special characters that I have to deal with in last
     for s in specials:
         text = text.replace(s, specials[s])
     text =text.translate(remove_dict)
@@ -54,7 +54,7 @@ def clean_special_chars(text, punct=punct, mapping=punct_mapping,delete_symbols=
     	text = text.translate(isolate_dict)
     else:
     	text = text.translate(isolate_dict_ML)
-    re.sub(r"[.]*\d+","<number>",text)
+    re.sub(r"[.]*\d+","",text)
     return text
 
-print(clean_special_chars("dfvf₹ ffv₹😂 rfvf₹ s😂d😂v !!! ???! ₹₹₹.....",punct,punct_mapping,symbols_to_delete))
+#print(clean_special_chars("dfvf₹ ffv₹😂 rfvf₹ s😂d😂v !!! ???! ₹₹₹.....",punct,punct_mapping,symbols_to_delete))
