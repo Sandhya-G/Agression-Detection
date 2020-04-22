@@ -2,7 +2,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import f_classif
 
-def ngram_vectorize(Vectorize,train_texts, train_labels,test_texts,top_k=20000,NGRAM_RANGE = (1, 2),STOPWORDS = None,TOKEN_MODE = 'word',MAX_DOCUMENT_FREQUENCY = 0.75,MIN_DOCUMENT_FREQUENCY = 2):
+def ngram_vectorize(Vectorize,train_texts, train_labels,test_texts,top_k=20000,NGRAM_RANGE = (1, 2),STOPWORDS = None,TOKEN_MODE = 'word',MAX_DOCUMENT_FREQUENCY = 0.75,MIN_DOCUMENT_FREQUENCY = 3):
     """Vectorizes texts as n-gram vectors"""
     # Create keyword arguments to pass to the 'tf-idf' vectorizer.
     kwargs = {
