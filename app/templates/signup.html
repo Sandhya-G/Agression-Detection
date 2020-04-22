@@ -10,7 +10,8 @@
 
 
 <body>
-    <form action="" class="login-form">
+    <form action="" class="login-form"action="" method="post">
+        {{ form.hidden_tag() }}
         <h1>SignUp</h1>
         {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
