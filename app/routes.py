@@ -7,6 +7,7 @@ from app.forms import LoginForm,SignUp
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from app import db
+from werkzeug.urls import url_parse
 
 
 
