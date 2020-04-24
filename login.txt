@@ -1,0 +1,4 @@
+//login info username:password
+luffy:luffy
+ryuzaki:light
+armin:armin

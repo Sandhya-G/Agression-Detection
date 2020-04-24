@@ -13,20 +13,43 @@
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2" style="margin: auto;">
         <div class="panel panel-white profile-widget">
+        	{% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}"style="text-align:center;">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="image-container bg2" style="background:linear-gradient(120deg, #0779e4, #8e44ad);">  
-                        <img src="{{ post.author.avatar(180) }}" class="avatar" alt="avatar"> 
+                        <img src="{{  user.avatar(128) }}" class="avatar" alt="avatar"> 
                     </div>
                 </div>
                 <div class="col-sm-12">
+
                     <div class="details">
-                        <h4>John Smit Doe <i class="fa fa-sheild"></i></h4>
+                        <h4> {{ user.username.capitalize() }} <i class="fa fa-sheild"></i></h4>
                         <div>Works at Cool Company</div>
                         <div>Attended University of Wisdom</div>
                         <div>Lives in Tokyo, Japan</div>
+                        <div class="row justify-content-between"style="margin: auto;">
+                        <div style="margin: auto;"><h6 class="text-muted">Followers</h6>
+                        <h5>{{ user.followers.count() }}</div>
+                        <div style="margin: auto"><h6 class="text-muted">Following</h6>
+                        <h5>{{ user.followed.count() }}</div>
+                    	</div>
+
                         <div class="mg-top-10">
-                            <a href="#" class="btn btn-primary">Follow</a>
+                        {% if user != current_user %}
+                        	{% if not current_user.is_following(user) %}
+                        		<a href="{{ url_for('follow', username=user.username) }}" class="btn btn-primary">Follow</a>
+                        	{% else %}
+                        		<a href="{{ url_for('unfollow', username=user.username) }}" class="btn btn-primary">Unfollow</a>
+        					 {% endif %}
+        				{% endif %}
                         </div>
                     </div>
                 </div>
@@ -35,7 +58,7 @@
         </div>
         
         <div class="row">
-            
+            {% for post in posts %}
             <div class="col-sm-12">
                 <div class="panel panel-white post">
                     <div class="post-heading">
@@ -44,7 +67,7 @@
                         </div>
                         <div class="pull-left meta">
                             <div class="title h5">
-                                <a href="#"><b>John Doe</b></a>
+                                <a href="#"><b> {{ user.username }}</b></a>
                                 Tweeted.
                             </div>
                             <h6 class="text-muted time">5 seconds ago</h6>
@@ -52,7 +75,7 @@
                     </div>
                     
                     <div class="post-description">
-                        <h4>Product Shoot</h4>
+                        <h4> {{ post.body }} </h4>
                         <div class="stats">
                             <a href="javascript:void(0);" class="btn btn-default stat-item">
                                 <i class="fa fa-thumbs-up icon"></i>228
@@ -65,43 +88,12 @@
                     
                 </div>
             </div>
-            
+    {% endfor %}
 
 
 
 
-            <div class="col-sm-12">
-                <div class="panel panel-white post">
-                    <div class="post-heading">
-                        <div class="pull-left image">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-circle avatar" alt="user profile image">
-                        </div>
-                        <div class="pull-left meta">
-                            <div class="title h5">
-                                <a href="#"><b>John Doe</b></a>
-                                Tweeted.
-                            </div>
-                            <h6 class="text-muted time">5 seconds ago</h6>
-                        </div>
-                    </div>
-                    
-                    <div class="post-description">
-                        <h4>Product Shoot</h4>
-                        <div class="stats">
-                            <a href="javascript:void(0);" class="btn btn-default stat-item">
-                                <i class="fa fa-thumbs-up icon"></i>228
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-default stat-item">
-                                <i class="fa fa-share icon"></i>128
-                            </a>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            
 
-            
             
         </div>
         
