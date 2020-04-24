@@ -54,6 +54,12 @@ def signup():
 		return redirect(url_for('login'))
 	return render_template('signup.html',  form=form)
 
+
+@app.route('/profile')
+def profile():
+	return render_template('profile.html')
+
+
 @app.route('/logout')
 def logout():
     logout_user()

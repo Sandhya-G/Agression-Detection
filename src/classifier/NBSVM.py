@@ -1,4 +1,4 @@
-#Credis to AlexSanchez https://www.kaggle.com/jhoward/nb-svm-strong-linear-baseline-eda-0-052-lb#261316
+#Credits to AlexSanchez https://www.kaggle.com/jhoward/nb-svm-strong-linear-baseline-eda-0-052-lb#261316
 #custom NB model
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
